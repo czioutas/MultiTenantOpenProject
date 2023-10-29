@@ -1,0 +1,21 @@
+# The infra.yml contains all the infrastructure required in order to support the application
+
+version: '3.8'
+
+services:     
+  db_local:
+    image: postgres:12.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=applicationDb
+      - POSTGRES_PASSWORD=applicationDb
+      - POSTGRES_DB=applicationDb
+      - POSTGRES_PORT=5432
+      #PGDATA: /var/lib/postgresql/data/pg_data
+    networks:
+      - infra
+    ports:
+      - '5433:5432'   
+
+networks:
+  infra:

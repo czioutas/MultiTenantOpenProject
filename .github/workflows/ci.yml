@@ -1,0 +1,63 @@
+name: API CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+env:
+  # Setting an environment variable with the value of a configuration variable
+  POSTGRES_DB: ${{ vars.POSTGRES_DB }}
+  POSTGRES_PORT: ${{ vars.POSTGRES_PORT }}
+  POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+  APP_RUNTIME_USER: ${{ secrets.APP_RUNTIME_USER }}
+  APP_RUNTIME_USER_PASSWORD: ${{ secrets.APP_RUNTIME_USER_PASSWORD }}
+  POSTGRES_SHOULD_USE_SSL: ${{ vars.POSTGRES_SHOULD_USE_SSL }}
+  POSTGRES_REJECT_UNAUTHORIZED: ${{ vars.POSTGRES_SHOULD_USE_SSL }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: test
+    defaults:
+      run:
+        working-directory: ./
+
+    strategy:
+      matrix:
+        node-version: ["7.0.x"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: "5.x"
+
+      - name: Determine Version
+        id: gitversion # id to later be referenced
+        uses: gittools/actions/gitversion/execute@v0
+        with:
+          useConfigFile: true
+
+      - uses: actions/checkout@v4
+      - name: Setup dotnet ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Display dotnet version
+        run: dotnet --version
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build
+
+      - name: Test with the dotnet CLI
+        run: dotnet test

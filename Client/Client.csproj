@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    
+    <Product>MultiTenantOpenProject</Product>
+    <AssemblyName>MultiTenantOpenProject.Client</AssemblyName>
+    <Configurations>Debug;Release;</Configurations>
+    <NuspecFile>Client.nuspec</NuspecFile>
+    <NuspecProperties>version=$(Version);id=$(AssemblyName)</NuspecProperties>
+  </PropertyGroup>
+
+</Project>
