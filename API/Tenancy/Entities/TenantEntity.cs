@@ -1,5 +1,6 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MultiTenantOpenProject.API.Account.Entities;
 using MultiTenantOpenProject.API.Entities;
 
 namespace MultiTenantOpenProject.API.Tenancy.Entities;
@@ -11,12 +12,14 @@ public class TenantEntity : BaseEntity
 
     public string Identifier { get; set; } // the identifier can change but not the Id
 
+    public ICollection<ApplicationUserEntity> ApplicationUsers { get; set; } = new List<ApplicationUserEntity>(); // Collection navigation containing dependents
+
     public TenantEntity()
     {
         Identifier = string.Empty;
     }
 
-    public TenantEntity(Guid id, string identifier)
+    public TenantEntity(string identifier)
     {
         Identifier = identifier;
     }

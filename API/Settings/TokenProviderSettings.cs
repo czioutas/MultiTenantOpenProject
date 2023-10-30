@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.IdentityModel.Tokens;
 
 namespace MultiTenantOpenProject.API.Settings

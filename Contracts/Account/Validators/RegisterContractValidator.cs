@@ -1,6 +1,6 @@
-using FluentValidation;
+﻿using FluentValidation;
 
-namespace MultiTenantOpenProject.Contracts.Validation;
+namespace MultiTenantOpenProject.Contracts.Account.Validators;
 
 public class RegisterContractValidator : AbstractValidator<RegisterContract>
 {

@@ -1,4 +1,4 @@
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using MultiTenantOpenProject.API.Account.Entities;
 using MultiTenantOpenProject.API.Account.Models;
 

@@ -1,4 +1,4 @@
-using MultiTenantOpenProject.API.Models;
+﻿using MultiTenantOpenProject.API.Models;
 
 namespace MultiTenantOpenProject.API.Account.Models;
 public class ApplicationUserModel : BaseModel

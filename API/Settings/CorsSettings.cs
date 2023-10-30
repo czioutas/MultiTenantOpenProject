@@ -1,4 +1,4 @@
-namespace MultiTenantOpenProject.API.Settings;
+﻿namespace MultiTenantOpenProject.API.Settings;
 
 public class CorsSettings
 {

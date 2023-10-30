@@ -1,4 +1,4 @@
-namespace MultiTenantOpenProject.API.Models;
+﻿namespace MultiTenantOpenProject.API.Models;
 /// <summary>
 /// 
 /// </summary>

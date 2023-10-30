@@ -1,4 +1,4 @@
-namespace MultiTenantOpenProject.API.Application.Middleware;
+﻿namespace MultiTenantOpenProject.API.Application.Middleware;
 
 public class TraceMiddleware
 {

@@ -1,6 +1,4 @@
-using System.Reflection;
-
-namespace MultiTenantOpenProject.API.Entities
+﻿namespace MultiTenantOpenProject.API.Entities
 {
     public class BaseEntity
     {

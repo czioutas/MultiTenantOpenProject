@@ -1,13 +1,14 @@
+﻿using MultiTenantOpenProject.API.Application.Services.Interfaces;
 using MultiTenantOpenProject.API.Tenancy.Services.Interfaces;
 
 namespace MultiTenantOpenProject.API.Application.Middleware;
 
 public class MultiTenantServiceMiddleware : IMiddleware
 {
-    private readonly ITenantService _tenantService;
-    public MultiTenantServiceMiddleware(ITenantService tenantService)
+    private readonly IRequestTenant _requestTenant;
+    public MultiTenantServiceMiddleware(IRequestTenant requestTenant)
     {
-        _tenantService = tenantService;
+        _requestTenant = requestTenant;
     }
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
@@ -24,7 +25,7 @@ public class MultiTenantServiceMiddleware : IMiddleware
 
         if (!string.IsNullOrEmpty(tenantId) && Guid.TryParse(tenantId, out Guid parsedTenantId))
         {
-            _tenantService.SetTenantId(parsedTenantId);
+            _requestTenant.SetTenantId(parsedTenantId);
         }
 
         await next(context);

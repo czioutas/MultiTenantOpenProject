@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 using MultiTenantOpenProject.API.Tenancy.Entities;
 
@@ -18,6 +18,24 @@ public class ApplicationUserEntity : IdentityUser<Guid>
         Guid tenantId,
         string email) : base(email)
     {
+        TenantId = tenantId;
+        Email = email;
+    }
+
+    /// <summary>
+    /// Constructor with ID as input. Should be avoided as EF handles the ID generation.
+    /// Mainly used for Testing/Mocking purposes
+    /// </summary>
+    /// <param name="id">The already generated Id</param>
+    /// <param name="tenantId">The tenant Id</param>
+    /// <param name="email">The email</param>
+    /// <returns></returns>
+    public ApplicationUserEntity(
+        Guid id,
+        Guid tenantId,
+        string email) : base(email)
+    {
+        Id = id;
         TenantId = tenantId;
         Email = email;
     }

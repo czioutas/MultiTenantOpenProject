@@ -1,4 +1,4 @@
-namespace MultiTenantOpenProject.API.Application;
+﻿namespace MultiTenantOpenProject.API.Application;
 
 public static class Constants
 {

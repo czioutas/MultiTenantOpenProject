@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MultiTenantOpenProject.API.Data;
 using Serilog;
 
@@ -16,20 +16,20 @@ public class Program
             return;
         }
 
-        Console.WriteLine(env.EnvironmentName);
-
-        var dropDbAndSeedData = Environment.GetEnvironmentVariable("DROP_DB_SEED_DATA");
-        Console.WriteLine(dropDbAndSeedData);
-
         var configuration = new ConfigurationBuilder()
-            .AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true)
-            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
-            .AddEnvironmentVariables()
-            .Build();
+        .AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true)
+        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+        .AddEnvironmentVariables()
+        .Build();
 
         Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration)
             .CreateLogger();
+
+        Log.Information("ENV: " + env.EnvironmentName);
+
+        var dropDbAndSeedData = Environment.GetEnvironmentVariable("DROP_DB_SEED_DATA");
+        Log.Information("DropDb value: " + dropDbAndSeedData);
 
         try
         {
@@ -39,7 +39,7 @@ public class Program
             {
                 if (!env.IsProduction())
                 {
-                    Log.Information("Dropping application database.");
+                    Log.Warning("Dropping application database.");
                     scope.ServiceProvider.GetService<ApplicationDbContext>()?.Database.EnsureDeleted();
                 }
 

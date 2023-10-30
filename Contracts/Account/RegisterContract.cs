@@ -1,5 +1,5 @@
-
-namespace MultiTenantOpenProject.Contracts;
+﻿
+namespace MultiTenantOpenProject.Contracts.Account;
 /// <summary>
 /// Contract used to transmit required data for registration
 /// </summary>

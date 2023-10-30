@@ -1,4 +1,4 @@
-namespace MultiTenantOpenProject.API.Exceptions;
+﻿namespace MultiTenantOpenProject.API.Exceptions;
 
 ///<Summary>
 /// Exception Type for handled cases.

@@ -1,4 +1,4 @@
-namespace MultiTenantOpenProject.API.Application.Services.Interfaces;
+﻿namespace MultiTenantOpenProject.API.Application.Services.Interfaces;
 
 public interface IRequestTenant
 {

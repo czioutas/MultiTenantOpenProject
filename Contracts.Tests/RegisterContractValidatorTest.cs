@@ -1,7 +1,8 @@
+﻿using System;
 using Bogus;
 using FluentValidation.TestHelper;
-using MultiTenantOpenProject.Contracts.Validation;
-using System;
+using MultiTenantOpenProject.Contracts.Account;
+using MultiTenantOpenProject.Contracts.Account.Validators;
 
 namespace MultiTenantOpenProject.Contracts.Tests
 {

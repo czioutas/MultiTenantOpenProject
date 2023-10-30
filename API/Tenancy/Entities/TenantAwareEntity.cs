@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using MultiTenantOpenProject.API.Entities;
 
 namespace MultiTenantOpenProject.API.Tenancy.Entities;

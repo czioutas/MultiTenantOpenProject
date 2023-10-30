@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -27,11 +27,12 @@ namespace MultiTenantOpenProject.API.Data
         }
 
         // What is => Set<T>()? https://docs.microsoft.com/en-us/ef/core/miscellaneous/nullable-reference-types#dbcontext-and-dbset
+        public DbSet<TenantEntity> Tenants => Set<TenantEntity>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            ConfigurateTenant(builder);
+            ConfigureTenant(builder);
             ConfigureRLSForEntities(builder);
 
             foreach (var entityType in builder.Model.GetEntityTypes())
@@ -44,7 +45,7 @@ namespace MultiTenantOpenProject.API.Data
             }
         }
 
-        private static void ConfigurateTenant(ModelBuilder builder)
+        private static void ConfigureTenant(ModelBuilder builder)
         {
             builder.Entity<TenantEntity>().HasIndex(t => t.Identifier).IsUnique();
         }

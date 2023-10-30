@@ -1,4 +1,4 @@
-namespace MultiTenantOpenProject.API.Extensions;
+﻿namespace MultiTenantOpenProject.API.Extensions;
 
 /// <summary>
 /// Extensions methods for Enums

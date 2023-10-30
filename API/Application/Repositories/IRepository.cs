@@ -1,4 +1,5 @@
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using MultiTenantOpenProject.API.Entities;
 
 namespace MultiTenantOpenProject.API.Repositories;
@@ -10,6 +11,8 @@ namespace MultiTenantOpenProject.API.Repositories;
 public interface IRepository<T>
     where T : BaseEntity
 {
+    public DbContext Context { get; set; }
+
     /// <summary>
     /// Clears tracking changes
     /// </summary>

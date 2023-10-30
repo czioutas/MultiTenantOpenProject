@@ -1,4 +1,5 @@
-using AutoMapper;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using MultiTenantOpenProject.API.Application.Services;
 using MultiTenantOpenProject.API.Exceptions;
 using MultiTenantOpenProject.API.Models;
@@ -11,14 +12,12 @@ namespace MultiTenantOpenProject.API.Tenancy.Services;
 
 public class TenantService : BaseService<TenantService>, ITenantService
 {
-    public Guid TenantId { get; private set; }
-
     public readonly IRepository<TenantEntity> _repository;
 
     public TenantService(
         IRepository<TenantEntity> repository,
-        ILogger<TenantService> logger,
-        IMapper mapper) : base(logger, mapper)
+        ILogger<TenantService> logger
+    ) : base(logger)
     {
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
@@ -60,8 +59,20 @@ public class TenantService : BaseService<TenantService>, ITenantService
         }
     }
 
-    void ITenantService.SetTenantId(Guid tenantId)
+    public async Task<TenantModel> GetAsync(Guid id, Guid userId)
     {
-        this.TenantId = tenantId;
+        TenantEntity? tenantEntity = await _repository.Context.Set<TenantEntity>()
+        .Where(t => t.Id == id)
+        .Include(t => t.ApplicationUsers)
+        .Where(t => t.ApplicationUsers.FirstOrDefault(u => u.Id == userId) != null)
+        .FirstOrDefaultAsync();
+
+        if (tenantEntity is null)
+        {
+            throw new ResourceNotFoundException();
+        }
+
+        return tenantEntity.Adapt<TenantModel>();
     }
+
 }

@@ -1,4 +1,4 @@
-namespace MultiTenantOpenProject.API.Extensions;
+﻿namespace MultiTenantOpenProject.API.Extensions;
 
 public static class StringExtensions
 {

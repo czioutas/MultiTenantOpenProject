@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MultiTenantOpenProject.API.Account.Entities;
@@ -6,7 +6,7 @@ using MultiTenantOpenProject.API.Account.Models;
 using MultiTenantOpenProject.API.Account.Services.Interfaces;
 using MultiTenantOpenProject.API.Extensions;
 using MultiTenantOpenProject.API.Models;
-using MultiTenantOpenProject.Contracts;
+using MultiTenantOpenProject.Contracts.Account;
 
 namespace MultiTenantOpenProject.API.Account.Controllers
 {

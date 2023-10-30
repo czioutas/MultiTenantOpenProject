@@ -1,4 +1,4 @@
-namespace MultiTenantOpenProject.Library.Extensions;
+﻿namespace MultiTenantOpenProject.Library.Extensions;
 
 /// <summary>
 /// Extensions methods for Enums

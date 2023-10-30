@@ -1,4 +1,4 @@
-namespace MultiTenantOpenProject.API.Application.Settings;
+﻿namespace MultiTenantOpenProject.API.Application.Settings;
 
 public class RedisSettings
 {

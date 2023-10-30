@@ -1,4 +1,4 @@
-namespace MultiTenantOpenProject.Contracts;
+﻿namespace MultiTenantOpenProject.Contracts.Account;
 public sealed record UserContract
 {
     public string Name { get; init; } = string.Empty;
