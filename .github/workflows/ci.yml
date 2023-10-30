@@ -60,7 +60,7 @@ jobs:
         run: dotnet restore
 
       - name: Code Format Test
-        run: dotnet dotnet-format ../MultiTenantOpenProject.sln --check
+        run: dotnet dotnet-format --check
 
       - name: Build
         run: dotnet build
