@@ -53,6 +53,9 @@ jobs:
       - name: Display dotnet version
         run: dotnet --version
 
+      - name: Install dotnet tools
+        run: dotnet tool restore
+
       - name: Install dependencies
         run: dotnet restore
 
