@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <Target Name="Dotnet Format" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
-    <Exec Command="dotnet dotnet-format ..\MultiTenantOpenProject.sln -v -d" />
+    <Exec Command="dotnet dotnet-format ..\MultiTenantOpenProject.sln" />
   </Target>
 
 </Project>
