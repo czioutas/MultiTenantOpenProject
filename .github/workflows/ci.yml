@@ -7,13 +7,7 @@ on:
     branches: ["main"]
 env:
   # Setting an environment variable with the value of a configuration variable
-  POSTGRES_DB: ${{ vars.POSTGRES_DB }}
-  POSTGRES_PORT: ${{ vars.POSTGRES_PORT }}
-  POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
-  APP_RUNTIME_USER: ${{ secrets.APP_RUNTIME_USER }}
-  APP_RUNTIME_USER_PASSWORD: ${{ secrets.APP_RUNTIME_USER_PASSWORD }}
-  POSTGRES_SHOULD_USE_SSL: ${{ vars.POSTGRES_SHOULD_USE_SSL }}
-  POSTGRES_REJECT_UNAUTHORIZED: ${{ vars.POSTGRES_SHOULD_USE_SSL }}
+  SHOULD_NOT_FORMAT: true
 
 jobs:
   build:
@@ -53,8 +47,14 @@ jobs:
       - name: Display dotnet version
         run: dotnet --version
 
+      - name: Install dotnet tools
+        run: dotnet tool restore
+
       - name: Install dependencies
         run: dotnet restore
+
+      - name: Code Format Test
+        run: dotnet dotnet-format --check
 
       - name: Build
         run: dotnet build
