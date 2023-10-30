@@ -47,7 +47,7 @@
     <ProjectReference Include="..\Library\Library.csproj" />
   </ItemGroup>
 
-  <Target Name="Dotnet Format" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
+  <Target Name="Dotnet Format" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug' And $(environment) != 'test'">
     <Exec Command="dotnet dotnet-format ..\MultiTenantOpenProject.sln" />
   </Target>
 
